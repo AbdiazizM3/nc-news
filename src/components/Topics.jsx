@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import { getTopics } from "../api"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import Loading from "./Loading"
 
-export default function Topics ({currentUser}) {
+export default function Topics () {
+    const {username} = useParams()
     const [topics, setTopics] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
@@ -25,7 +26,7 @@ export default function Topics ({currentUser}) {
                     {topics.map((topic, index) => {
                         return(
                             <li key={index}>
-                                <button><Link to={`/${currentUser}/${topic.slug}/articles`}>{topic.slug}</Link></button>
+                                <button><Link to={`/${username}/${topic.slug}/articles`}>{topic.slug}</Link></button>
                             </li>
                         )
                     })}

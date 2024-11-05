@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import Loading from "./Loading";
 import ArticleCard from "./ArticleCard";
 
-export default function Articles ({currentUser}) {
+export default function Articles () {
     const {topic} = useParams()
     const [articles, setArticles] = useState([])
     const [isLoading, setIsLoading] = useState(true)
@@ -22,7 +22,7 @@ export default function Articles ({currentUser}) {
 
     return (
         <article>
-            <ArticleCard topic={topic} currentUser={currentUser} articles={articles} />
+            <ArticleCard articles={articles} />
         </article>
     )
 }
