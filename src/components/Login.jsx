@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import getUsernames from "../api";
 import { Link } from "react-router-dom";
+import Loading from "./Loading";
 
 export default function Login ({setCurrentUser}) {
     const [usernames, setUsernames] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     function selectUser (event) {
         setCurrentUser(event.currentTarget.value)
@@ -12,8 +14,13 @@ export default function Login ({setCurrentUser}) {
     useEffect(() => {
         getUsernames().then(({users}) => {
             setUsernames(users)
+            setIsLoading(false)
         })
     }, [])
+
+    if(isLoading){
+        return <Loading />
+    }
 
     return(
         <article>
