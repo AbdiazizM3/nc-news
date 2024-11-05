@@ -28,3 +28,8 @@
   position: relative;
   transform: translate(500px, -120px);
 }
+
+.article-details{
+  display: inline;
+  margin-left: 10%;
+}

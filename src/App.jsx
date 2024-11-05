@@ -9,16 +9,18 @@ import './App.css'
 import ArticlePage from './components/ArticlePage'
 
 function App() {
+  const [currentUser, setCurrentUser] = useState("")
+
   return (
     <>
       <div>
         <Router>
-        <Header />
+        <Header setCurrentUser={setCurrentUser}/>
           <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/:username/topics" element={<Topics />} />
+          <Route path="/" element={<Login setCurrentUser={setCurrentUser}/>} />
+          <Route path="/:username/topics" element={<Topics currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />
           <Route path="/:username/:topic/articles" element={<Articles />} />
-          <Route path="/:username/:topic/articles/:article_id" element={<ArticlePage />} />
+          <Route path="/:username/:topic/articles/:article_id" element={<ArticlePage currentUser={currentUser}/>} />
           </Routes>
         </Router>
       </div>

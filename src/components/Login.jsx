@@ -3,9 +3,13 @@ import getUsernames from "../api";
 import { Link, useParams } from "react-router-dom";
 import Loading from "./Loading";
 
-export default function Login () {
+export default function Login ({setCurrentUser}) {
     const [usernames, setUsernames] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+
+    function selectUser (event) {
+        setCurrentUser(event.currentTarget.value)
+    }
 
     useEffect(() => {
         getUsernames().then(({users}) => {
@@ -28,7 +32,7 @@ export default function Login () {
                     return(
                         <li key={index} className="user-login-box">
                             <img src={user.avatar_url} alt="User avatar" id="user-avatar" />
-                            <button><Link to={`${user.username}/topics`}>{user.username}</Link></button>
+                            <button onClick={selectUser} value={user.username}><Link to={`${user.username}/topics`}>{user.username}</Link></button>
                         </li>
                     )
                 })}
