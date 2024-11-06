@@ -16,3 +16,13 @@ export async function getArticleByTopic(topic) {
   const response = await axios.get(`${baseUrl}/articles?topic=${topic}`);
   return response.data;
 }
+
+export async function getArticleById(id) {
+  const response = await axios.get(`${baseUrl}/articles/${id}`);
+  return response.data;
+}
+
+export async function getCommentsByArticle(id) {
+  const response = await axios.get(`${baseUrl}/articles/${id}/comments`);
+  return response.data;
+}

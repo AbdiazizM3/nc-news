@@ -6,6 +6,7 @@ import Login from './components/Login'
 import Topics from './components/Topics'
 import Articles from './components/Articles'
 import './App.css'
+import ArticlePage from './components/ArticlePage'
 
 function App() {
   const [currentUser, setCurrentUser] = useState("")
@@ -14,11 +15,11 @@ function App() {
     <>
       <div>
         <Router>
-        <Header />
+        <Header currentUser={currentUser} setCurrentUser={setCurrentUser}/>
           <Routes>
-          <Route path="/" element={<Login setCurrentUser={setCurrentUser} />} />
-          <Route path="/:username/topics" element={<Topics currentUser={currentUser} />} />
-          <Route path="/:username/:topic/articles" element={<Articles currentUser={currentUser} />} />
+          <Route path="/" element={<Login setCurrentUser={setCurrentUser}/>} />
+          <Route path="/:username/articles" element={<Articles />} />
+          <Route path="/:username/articles/:article_id" element={<ArticlePage currentUser={currentUser}/>} />
           </Routes>
         </Router>
       </div>
