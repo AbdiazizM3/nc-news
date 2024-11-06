@@ -32,7 +32,7 @@ export default function Login ({setCurrentUser}) {
                     return(
                         <li key={index} className="user-login-box">
                             <img src={user.avatar_url} alt="User avatar" id="user-avatar" />
-                            <button onClick={selectUser} value={user.username}><Link to={`${user.username}/topics`}>{user.username}</Link></button>
+                            <button onClick={selectUser} value={user.username}><Link to={`${user.username}/articles`}>{user.username}</Link></button>
                         </li>
                     )
                 })}

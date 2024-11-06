@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { getArticleByTopic } from "../api";
-import { useParams } from "react-router-dom";
 import Loading from "./Loading";
 import ArticleCard from "./ArticleCard";
+import Topics from "./Topics";
 
 export default function Articles () {
-    const {topic} = useParams()
+    const [topic, setTopic] = useState("")
     const [articles, setArticles] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
@@ -22,6 +22,7 @@ export default function Articles () {
 
     return (
         <article>
+            <Topics setTopic={setTopic}/>
             <ArticleCard articles={articles} />
         </article>
     )

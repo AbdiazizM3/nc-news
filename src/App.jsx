@@ -15,12 +15,11 @@ function App() {
     <>
       <div>
         <Router>
-        <Header setCurrentUser={setCurrentUser}/>
+        <Header currentUser={currentUser} setCurrentUser={setCurrentUser}/>
           <Routes>
           <Route path="/" element={<Login setCurrentUser={setCurrentUser}/>} />
-          <Route path="/:username/topics" element={<Topics currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />
-          <Route path="/:username/:topic/articles" element={<Articles />} />
-          <Route path="/:username/:topic/articles/:article_id" element={<ArticlePage currentUser={currentUser}/>} />
+          <Route path="/:username/articles" element={<Articles />} />
+          <Route path="/:username/articles/:article_id" element={<ArticlePage currentUser={currentUser}/>} />
           </Routes>
         </Router>
       </div>

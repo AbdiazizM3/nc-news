@@ -1,40 +1,30 @@
 import { useEffect, useState } from "react"
 import { getTopics } from "../api"
-import { Link, useParams } from "react-router-dom"
-import Loading from "./Loading"
 
-export default function Topics ({currentUser, setCurrentUser}) {
+export default function Topics ({setTopic}) {
     const [topics, setTopics] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
 
-    if(currentUser === ""){
-        setCurrentUser("guest")
+    function pickTopic (event) {
+        setTopic(event.target.value)
     }
 
     useEffect(() => {
         getTopics().then(({topics}) => {
             setTopics(topics)
-            setIsLoading(false)
         })
     }, [])
 
-    if(isLoading){
-        return <Loading />
-    }
-
     return(
-        <article>
-            <div>
-                <ul>
-                    {topics.map((topic, index) => {
-                        return(
-                            <li key={index}>
-                                <button><Link to={`/${currentUser}/${topic.slug}/articles`}>{topic.slug}</Link></button>
-                            </li>
-                        )
-                    })}
-                </ul>
-            </div>
-        </article>
+        <div id="topic-drop" onChange={pickTopic}>
+            <label htmlFor="topics"></label>
+            <select name="topics" id="topics">
+                <option value="">All</option>
+            {topics.map((topic, index) => {
+                return(
+                <option key={index} value={topic.slug}>{topic.slug}</option>
+                )
+            })}
+            </select>
+        </div>
     )
 }

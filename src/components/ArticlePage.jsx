@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleById, getCommentsByArticle } from "../api";
 import Loading from "./Loading";
+import CommentCard from "./CommentCard"
 
 export default function ArticlePage () {
     const {article_id} = useParams()
@@ -12,6 +13,9 @@ export default function ArticlePage () {
     useEffect(() => {
         getArticleById(article_id).then((data) => {
             setArticle(data.article)
+        })
+        getCommentsByArticle(article_id).then((data) => {
+            setComments(data.comments)
             setIsLoading(false)
         })
     }, [comments])
@@ -33,6 +37,7 @@ export default function ArticlePage () {
                 <p className="article-details">comments: {article.comment_count}</p>
                 <p className="article-details">{article.created_at}</p>
             </div>
+            <CommentCard comments={comments}/>
         </article>
     )
 }
