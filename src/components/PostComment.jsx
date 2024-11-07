@@ -12,13 +12,13 @@ export default function PostComment({id, currentUser}) {
 
     async function handleCommentPost(event) {
         await postCommentById(id, currentUser, commentInput).catch((err) => {
-            setError(err)
+            setError("Failed to post comment")
         })
         await setCommentInput("")
     }
 
     if(error){
-        return <Error message={error.message}/>
+        return <Error message={error}/>
     }
 
     return(
