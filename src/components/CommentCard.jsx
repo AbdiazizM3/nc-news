@@ -1,4 +1,6 @@
-export default function CommentCard ({comments}) {
+import DeleteButton from "./DeleteButton"
+
+export default function CommentCard ({comments, currentUser}) {
     return(
         <div>
             <h2>Comments</h2>
@@ -10,6 +12,7 @@ export default function CommentCard ({comments}) {
                             <p>{comment.body}</p>
                             <p className="comment-details">votes: {comment.votes}</p>
                             <p className="comment-details">{comment.created_at}</p>
+                            <DeleteButton id={comment.comment_id} author={comment.author} username={currentUser}/>
                         </li>
                     )
                 })}

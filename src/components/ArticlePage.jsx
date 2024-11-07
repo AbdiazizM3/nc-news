@@ -18,23 +18,23 @@ export default function ArticlePage ({currentUser}) {
         getArticleById(article_id).then((data) => {
             setArticle(data.article)
         }).catch((err) => {
-            setError(err)
+            setError("Failed to load article")
             setIsLoading(false)
         })
         getCommentsByArticle(article_id).then((data) => {
             setComments(data.comments)
             setIsLoading(false)
         }).catch((err) => {
-            setError(err)
+            setError("Failed to load comments")
         })
-    }, [])
+    }, [comments])
 
     if(isLoading){
         return <Loading />
     }
 
     if(error){
-        return <Error message={error.message}/>
+        return <Error message={error}/>
     }
 
     return(
@@ -49,7 +49,7 @@ export default function ArticlePage ({currentUser}) {
                 <VoteHandler votes={article.votes} comment_count={article.comment_count} date={article.created_at}/>
             </div>
             <PostComment id={article_id} currentUser={currentUser}/>
-            <CommentCard comments={comments}/>
+            <CommentCard comments={comments} currentUser={currentUser}/>
         </article>
     )
 }

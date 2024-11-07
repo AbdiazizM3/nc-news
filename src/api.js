@@ -41,3 +41,8 @@ export async function postCommentById(id, username, commentToPost) {
   });
   return response.data;
 }
+
+export async function deleteCommentById(id) {
+  const response = await axios.delete(`${baseUrl}/comments/${id}`);
+  return response.data;
+}

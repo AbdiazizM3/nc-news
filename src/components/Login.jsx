@@ -25,7 +25,6 @@ export default function Login ({setCurrentUser, setUserDetails}) {
     return(
         <article>
             <div>
-                <h1>NC NEWS</h1>
                 <h2>Pick a User</h2>
                 <ul>
                 {usernames.map((user, index) => {
