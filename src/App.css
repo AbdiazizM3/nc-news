@@ -32,7 +32,11 @@
 
 .article-details{
   display: inline;
-  margin-left: 10%;
+  margin-left: 5%;
+}
+
+.votes{
+  color: red;
 }
 
 .comment-box{
