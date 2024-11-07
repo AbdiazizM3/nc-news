@@ -5,8 +5,9 @@ import Header from './components/Header'
 import Login from './components/Login'
 import Home from './components/Home'
 import Articles from './components/Articles'
-import './App.css'
 import ArticlePage from './components/ArticlePage'
+import Topics from './components/Topics'
+import './App.css'
 
 function App() {
   const [currentUser, setCurrentUser] = useState("")
@@ -19,8 +20,9 @@ function App() {
           <Routes>
           <Route path="/" element={<Login setCurrentUser={setCurrentUser}/>} />
           <Route path="/:username/home" element={<Home currentUser={currentUser}/>} />
-          <Route path="/:username/articles" element={<Articles />} />
-          <Route path="/:username/articles/:article_id" element={<ArticlePage currentUser={currentUser}/>} />
+          <Route path="/:username/topics" element={<Topics currentUser={currentUser}/>}/>
+          <Route path="/:username/:topic/articles" element={<Articles />} />
+          <Route path="/:username/:topic/articles/:article_id" element={<ArticlePage currentUser={currentUser}/>} />
           </Routes>
         </Router>
       </div>
