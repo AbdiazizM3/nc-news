@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import getUsernames from "../api";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Loading from "./Loading";
 
-export default function Login ({setCurrentUser}) {
+export default function Login ({setCurrentUser, setUserDetails}) {
     const [usernames, setUsernames] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
