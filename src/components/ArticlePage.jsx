@@ -4,8 +4,10 @@ import { getArticleById, getCommentsByArticle} from "../api";
 import Loading from "./Loading";
 import CommentCard from "./CommentCard"
 import VoteHandler from "./VoteHandler";
+import PostComment from "./PostComment";
+import Error from "./Error"
 
-export default function ArticlePage () {
+export default function ArticlePage ({currentUser}) {
     const {article_id} = useParams()
     const [article, setArticle] = useState({})
     const [comments, setComments] = useState([])
@@ -45,6 +47,7 @@ export default function ArticlePage () {
                 <br />
                 <VoteHandler votes={article.votes} comment_count={article.comment_count} date={article.created_at}/>
             </div>
+            <PostComment id={article_id} currentUser={currentUser}/>
             <CommentCard comments={comments}/>
         </article>
     )

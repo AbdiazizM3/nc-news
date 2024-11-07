@@ -33,3 +33,11 @@ export async function updateArticleVotesById(id) {
   });
   return response.data;
 }
+
+export async function postCommentById(id, username, commentToPost) {
+  const response = await axios.post(`${baseUrl}/articles/${id}/comments`, {
+    username: username,
+    body: commentToPost,
+  });
+  return response.data;
+}

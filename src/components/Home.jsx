@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react"
-import getUsernames from "../api"
+import { useState } from "react"
+import Error from "./Error"
 
 export default function Home ({currentUser}) {
     const [comments, setComments] = useState([])
