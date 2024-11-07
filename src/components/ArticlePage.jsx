@@ -19,6 +19,7 @@ export default function ArticlePage ({currentUser}) {
             setArticle(data.article)
         }).catch((err) => {
             setError(err)
+            setIsLoading(false)
         })
         getCommentsByArticle(article_id).then((data) => {
             setComments(data.comments)
