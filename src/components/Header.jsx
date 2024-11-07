@@ -10,7 +10,7 @@ export default function Header ({currentUser, setCurrentUser}) {
             <h1>NC NEWS</h1>
             <nav>
             <button><Link to={`/${currentUser}/home`}>Home</Link></button>
-            <button><Link to={`/${currentUser}/articles`}>Articles</Link></button>
+            <button><Link to={`/${currentUser}/topics`}>Topics</Link></button>
             <button onClick={resetUser}><Link to="/">Logout</Link></button>
             </nav>
         </div>
