@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function Header ({currentUser, setCurrentUser}) {
+export default function Header ({setCurrentUser}) {
     function resetUser() {
         setCurrentUser("guest")
     }
@@ -9,8 +9,8 @@ export default function Header ({currentUser, setCurrentUser}) {
         <div>
             <h1>NC NEWS</h1>
             <nav>
-            <button><Link to={`/${currentUser}/home`}>Home</Link></button>
-            <button><Link to={`/${currentUser}/topics`}>Topics</Link></button>
+            <button><Link to="/home">Home</Link></button>
+            <button><Link to="/topics">Topics</Link></button>
             <button onClick={resetUser}><Link to="/">Logout</Link></button>
             </nav>
         </div>

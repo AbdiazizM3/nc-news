@@ -6,6 +6,6 @@ export default function DeleteButton({id, author, username}) {
     }
 
     if(author === username){
-    return <button className="comment-details" onClick={handleDelete} value={id}>X</button>
+    return <button className="comment__list --details" onClick={handleDelete} value={id}>X</button>
     }
 }

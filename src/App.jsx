@@ -8,6 +8,7 @@ import Articles from './components/Articles'
 import ArticlePage from './components/ArticlePage'
 import Topics from './components/Topics'
 import './App.css'
+import PageNotFound from './components/PageNotFound'
 
 function App() {
   const [currentUser, setCurrentUser] = useState("")
@@ -16,14 +17,15 @@ function App() {
     <>
       <div>
         <Router>
-        <Header currentUser={currentUser} setCurrentUser={setCurrentUser}/>
+        <Header setCurrentUser={setCurrentUser}/>
           <Routes>
           <Route path="/" element={<Login setCurrentUser={setCurrentUser}/>} />
-          <Route path="/:username/home" element={<Home currentUser={currentUser}/>} />
-          <Route path="/:username/topics" element={<Topics currentUser={currentUser}/>} />
-          <Route path="/:username/:topic/articles" element={<Articles />} />
-          <Route path=":username/home/:article_id" element={<ArticlePage currentUser={currentUser}/>} />
-          <Route path="/:username/:topic/articles/:article_id" element={<ArticlePage currentUser={currentUser}/>} />
+          <Route path="/home" element={<Home currentUser={currentUser}/>} />
+          <Route path="/topics" element={<Topics />} />
+          <Route path="/:topic/articles" element={<Articles />} />
+          <Route path="/home/:article_id" element={<ArticlePage currentUser={currentUser}/>} />
+          <Route path="/:topic/articles/:article_id" element={<ArticlePage currentUser={currentUser}/>} />
+          <Route path='*' exact={true} element={<PageNotFound />} />
           </Routes>
         </Router>
       </div>

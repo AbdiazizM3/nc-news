@@ -1,4 +1,4 @@
-export default function SortDrop({setSort, setOrder}) {
+export default function SortDrop({sort, order, setSort, setOrder}) {
     function handleSort(event) {
         setSort(event.target.value)
     }
@@ -9,12 +9,12 @@ export default function SortDrop({setSort, setOrder}) {
 
     return (
         <div className="article__filter">
-            <select name="sort" id="sort" className="article__filter --sort" onChange={handleSort}>
-                <option value="created_at">Date</option>
-                <option value="votes">Votes</option>
-                <option value="comment_count">Comments</option>
+            <select name="sort" id="sort" className="article__filter --sort" value={sort} onChange={handleSort}>
+                <option value="created_at">Recent</option>
+                <option value="votes">Popular</option>
+                <option value="comment_count">Most Talked about</option>
             </select>
-            <select name="order" id="order" className="article__filter --order" onChange={handleOrder}>
+            <select name="order" id="order" className="article__filter --order" value={order} onChange={handleOrder}>
                 <option value="DESC">DESC</option>
                 <option value="ASC">ASC</option>
             </select>

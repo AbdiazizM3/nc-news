@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getArticleByTopic } from "../api";
 import Loading from "./Loading";
-import ArticleCard from "./ArticleCard";
+import ArticleList from "./ArticleList";
 import { useParams } from "react-router-dom";
 import SortDrop from "./SortDrop";
 
@@ -10,10 +10,11 @@ export default function Articles () {
     const [articles, setArticles] = useState([])
     const [sort, setSort] = useState("created_at")
     const [order, setOrder] = useState("DESC")
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
 
     useEffect(() => {
+        setIsLoading(true)
         getArticleByTopic(topic, sort, order).then(({articles}) => {
             setArticles(articles)
             setIsLoading(false)
@@ -21,7 +22,7 @@ export default function Articles () {
             setError(`Could not find any articles under the ${topic} topic.`)
             setIsLoading(false)
         })
-    }, [articles, sort, order])
+    }, [sort, order])
 
     if(isLoading){
         return <Loading />
@@ -33,8 +34,8 @@ export default function Articles () {
 
     return (
         <article>
-            <SortDrop setSort={setSort} setOrder={setOrder} />
-            <ArticleCard articles={articles} />
+            <SortDrop sort={sort} order={order} setSort={setSort} setOrder={setOrder} />
+            <ArticleList articles={articles} />
         </article>
     )
 }

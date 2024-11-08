@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleById, getCommentsByArticle} from "../api";
 import Loading from "./Loading";
-import CommentCard from "./CommentCard"
+import CommentList from "./CommentList"
 import VoteHandler from "./VoteHandler";
 import PostComment from "./PostComment";
 import Error from "./Error"
@@ -10,24 +10,19 @@ import Error from "./Error"
 export default function ArticlePage ({currentUser}) {
     const {article_id} = useParams()
     const [article, setArticle] = useState({})
-    const [comments, setComments] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
 
     useEffect(() => {
+        setIsLoading(true)
         getArticleById(article_id).then((data) => {
             setArticle(data.article)
+            setIsLoading(false)
         }).catch((err) => {
             setError("Failed to load article")
             setIsLoading(false)
         })
-        getCommentsByArticle(article_id).then((data) => {
-            setComments(data.comments)
-            setIsLoading(false)
-        }).catch((err) => {
-            setError("Failed to load comments")
-        })
-    }, [comments])
+    }, [])
 
     if(isLoading){
         return <Loading />
@@ -49,7 +44,7 @@ export default function ArticlePage ({currentUser}) {
                 <VoteHandler votes={article.votes} comment_count={article.comment_count} date={article.created_at}/>
             </div>
             <PostComment id={article_id} currentUser={currentUser}/>
-            <CommentCard comments={comments} currentUser={currentUser}/>
+            <CommentList article_id={article_id} currentUser={currentUser}/>
         </article>
     )
 }

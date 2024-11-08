@@ -45,7 +45,7 @@
   margin-bottom: 1rem;
 }
 
-.comment-details{
+.comment__list .--details{
   display: inline;
   margin-left: 10rem;
 }

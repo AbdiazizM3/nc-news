@@ -3,7 +3,7 @@ import getUsernames from "../api";
 import { Link } from "react-router-dom";
 import Loading from "./Loading";
 
-export default function Login ({setCurrentUser, setUserDetails}) {
+export default function Login ({setCurrentUser}) {
     const [usernames, setUsernames] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
@@ -31,7 +31,7 @@ export default function Login ({setCurrentUser, setUserDetails}) {
                     return(
                         <li key={index} className="user-login-box">
                             <img src={user.avatar_url} alt="User avatar" id="user-avatar" />
-                            <button onClick={selectUser} value={user.username}><Link to={`${user.username}/home`}>{user.username}</Link></button>
+                            <button onClick={selectUser} value={user.username}><Link to="/home">{user.username}</Link></button>
                         </li>
                     )
                 })}
