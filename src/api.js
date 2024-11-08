@@ -46,3 +46,10 @@ export async function deleteCommentById(id) {
   const response = await axios.delete(`${baseUrl}/comments/${id}`);
   return response.data;
 }
+
+export async function getSortedArticles(sort, order) {
+  const response = await axios.get(
+    `${baseUrl}/articles?sort=${sort}&&order=${order}`
+  );
+  return response.data;
+}

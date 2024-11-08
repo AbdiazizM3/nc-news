@@ -49,3 +49,8 @@
   display: inline;
   margin-left: 10rem;
 }
+
+.article__filter{
+  display: inline;
+  margin-left: 10%;
+}
