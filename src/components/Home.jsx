@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import Error from "./Error"
-import { getSortedArticles } from "../api"
+import { getArticleByTopic } from "../api"
 import Loading from "./Loading"
 import ArticleCard from "./ArticleCard";
 import SortDrop from "./SortDrop";
@@ -13,7 +13,7 @@ export default function Home ({currentUser}) {
     const [error, setError] = useState(null)
 
     useEffect(() => {
-        getSortedArticles(sort, order).then(({articles}) => {
+        getArticleByTopic("", sort, order).then(({articles}) => {
             setArticles(articles)
             setIsLoading(false)
         }).catch((err) => {
