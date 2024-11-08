@@ -12,8 +12,16 @@ export async function getTopics() {
   return response.data;
 }
 
-export async function getArticleByTopic(topic) {
-  const response = await axios.get(`${baseUrl}/articles?topic=${topic}`);
+export async function getArticleByTopic(topic, sort, order) {
+  let topicQuery = `${baseUrl}/articles?topic=${topic}`;
+  if (sort) {
+    topicQuery += `&&sort=${sort}`;
+  }
+
+  if (order) {
+    topicQuery += `&&order=${order}`;
+  }
+  const response = await axios.get(topicQuery);
   return response.data;
 }
 

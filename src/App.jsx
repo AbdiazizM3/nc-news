@@ -20,8 +20,9 @@ function App() {
           <Routes>
           <Route path="/" element={<Login setCurrentUser={setCurrentUser}/>} />
           <Route path="/:username/home" element={<Home currentUser={currentUser}/>} />
-          <Route path="/:username/topics" element={<Topics currentUser={currentUser}/>}/>
+          <Route path="/:username/topics" element={<Topics currentUser={currentUser}/>} />
           <Route path="/:username/:topic/articles" element={<Articles />} />
+          <Route path=":username/home/:article_id" element={<ArticlePage currentUser={currentUser}/>} />
           <Route path="/:username/:topic/articles/:article_id" element={<ArticlePage currentUser={currentUser}/>} />
           </Routes>
         </Router>
