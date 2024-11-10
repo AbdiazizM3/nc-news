@@ -31,13 +31,11 @@ export default function Home ({currentUser}) {
     }
 
     return (
-        <article>
-            <div>
+        <article className="article__list">
                 <h2>Welcome back {currentUser}</h2>
                 <h3>Here is a list of all articles: </h3>
                 <SortDrop sort={sort} order={order} setSort={setSort} setOrder={setOrder}/>
                 <ArticleList articles={articles}/>
-            </div>
         </article>
     )
 }

@@ -29,8 +29,8 @@ export default function Login ({setCurrentUser}) {
                 <ul>
                 {usernames.map((user, index) => {
                     return(
-                        <li key={index} className="user-login-box">
-                            <img src={user.avatar_url} alt="User avatar" id="user-avatar" />
+                        <li key={index} className="user__login">
+                            <img src={user.avatar_url} alt="User avatar" id="user__avatar" />
                             <button onClick={selectUser} value={user.username}><Link to="/home">{user.username}</Link></button>
                         </li>
                     )

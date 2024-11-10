@@ -19,11 +19,10 @@ export default function VoteHandler({votes, comment_count, date}) {
     }
 
     return(
-        <div>
-            <button className="article-details votes" onClick={upVote}>Votes:</button>
-            <p className="article-details votes">{voteCount}</p>
-            <p className="article-details">comments: {comment_count}</p>
-            <p className="article-details">{date}</p>
+        <div className="article__data">
+            <button className="article__details --votes" onClick={upVote}>Votes: {voteCount}</button>
+            <p className="article__details">comments: {comment_count}</p>
+            <p className="article__details">{date}</p>
         </div>
     )
 }

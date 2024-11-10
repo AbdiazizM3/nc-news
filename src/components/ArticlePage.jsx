@@ -39,7 +39,7 @@ export default function ArticlePage ({currentUser}) {
                 <h2>{article.title}</h2>
                 <h3>Topic: {article.topic}</h3>
                 <p>{article.body}</p>
-                <img src={article.article_img_url} alt="Picture of related article" />
+                <img src={article.article_img_url} alt="Picture of related article" id="article__img"/>
                 <br />
                 <VoteHandler votes={article.votes} comment_count={article.comment_count} date={article.created_at}/>
             </div>

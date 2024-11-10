@@ -6,7 +6,7 @@ export default function ArticleList ({articles}) {
         <ul>
             {articles.map((article) => {
                 return(
-                    <li key={article.article_id} className="article-box">
+                    <li key={article.article_id} className="article__box">
                         <ArticleCard article={article}/>
                     </li>
                 )

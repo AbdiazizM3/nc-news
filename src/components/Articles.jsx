@@ -16,10 +16,15 @@ export default function Articles () {
     useEffect(() => {
         setIsLoading(true)
         getArticleByTopic(topic, sort, order).then(({articles}) => {
-            setArticles(articles)
-            setIsLoading(false)
+            if(articles.length === 0){
+                return Promise.reject([])
+            }
+            else{
+                setArticles(articles)
+                setIsLoading(false)
+            }
         }).catch((err) => {
-            setError(`Could not find any articles under the ${topic} topic.`)
+            setError("Could not find any articles under the specified topic.")
             setIsLoading(false)
         })
     }, [sort, order])
@@ -29,11 +34,14 @@ export default function Articles () {
     }
 
     if(error){
-        return <Error message={error}/>
+        return <div>
+            <h2>Error</h2>
+            <p>{error}</p>
+        </div>
     }
 
     return (
-        <article>
+        <article className="article__list">
             <SortDrop sort={sort} order={order} setSort={setSort} setOrder={setOrder} />
             <ArticleList articles={articles} />
         </article>

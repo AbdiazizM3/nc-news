@@ -22,7 +22,7 @@ export default function PostComment({id, currentUser}) {
     }
 
     return(
-        <div>
+        <div className="comment__input">
             <label htmlFor="comment">Comment: </label>
             <input type="comment" id="comment" value={commentInput} onChange={handleCommentInput}/>
             <button onClick={handleCommentPost}>Post</button>

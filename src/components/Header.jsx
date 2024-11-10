@@ -6,7 +6,7 @@ export default function Header ({setCurrentUser}) {
     }
 
     return(
-        <div>
+        <div className="header__box">
             <h1>NC NEWS</h1>
             <nav>
             <button><Link to="/home">Home</Link></button>

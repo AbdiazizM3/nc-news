@@ -28,7 +28,7 @@ export default function CommentList ({article_id, currentUser}) {
             <ul>
                 {comments.map((comment) => {
                     return (
-                        <li key={comment.comment_id} className="comment-box">
+                        <li key={comment.comment_id} className="comment__box">
                         <CommentCard comment={comment} currentUser={currentUser}/>
                         </li>
                     )
