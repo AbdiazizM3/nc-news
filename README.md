@@ -1,4 +1,4 @@
-# React + Vite
+# NC-NEWS
 
 Current Deployed Version: https://creative-croissant-547fd0.netlify.app/
 
