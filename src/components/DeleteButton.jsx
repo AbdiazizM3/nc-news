@@ -1,8 +1,11 @@
 import { deleteCommentById } from "../api"
 
-export default function DeleteButton({id, author, username}) {
+export default function DeleteButton({id, author, username, setDeleteStatus}) {
     function handleDelete(event) {
         deleteCommentById(event.currentTarget.value)
+        setDeleteStatus((currStatus) => {
+            return !currStatus
+        })
     }
 
     if(author === username){

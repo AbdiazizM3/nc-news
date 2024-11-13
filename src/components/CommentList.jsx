@@ -5,9 +5,9 @@ import Loading from "./Loading"
 import { CurrentUserContext } from "../CurrentUser"
 
 export default function CommentList ({article_id }) {
-    const {currentUser} = useContext(CurrentUserContext)
     const [comments, setComments] = useState([])
     const [isLoading, setIsLoading] = useState(false)
+    const [deleteStatus, setDeleteStatus] = useState(false)
 
     useEffect(() => {
         setIsLoading(true)
@@ -18,7 +18,7 @@ export default function CommentList ({article_id }) {
             setError("Failed to load comments")
             setIsLoading(false)
         })
-    }, [])
+    }, [deleteStatus])
 
     if(isLoading){
         return <Loading />
@@ -31,7 +31,7 @@ export default function CommentList ({article_id }) {
                 {comments.map((comment) => {
                     return (
                         <li key={comment.comment_id} className="comment__box">
-                        <CommentCard comment={comment} currentUser={currentUser}/>
+                        <CommentCard comment={comment} setDeleteStatus={setDeleteStatus}/>
                         </li>
                     )
                 })}

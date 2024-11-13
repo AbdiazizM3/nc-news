@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleById} from "../api";
 import Loading from "./Loading";
@@ -6,14 +6,15 @@ import CommentList from "./CommentList"
 import VoteHandler from "./VoteHandler";
 import PostComment from "./PostComment";
 import Error from "./Error"
-import { CurrentUserContext } from "../CurrentUser";
 
 export default function ArticlePage () {
-    const {currentUser} = useContext(CurrentUserContext)
     const {article_id} = useParams()
     const [article, setArticle] = useState({})
     const [isLoading, setIsLoading] = useState(false)
+    const [commentStatus, setCommentStatus] = useState(false)
     const [error, setError] = useState(null)
+
+    console.log("Gg")
 
     useEffect(() => {
         setIsLoading(true)
@@ -24,7 +25,7 @@ export default function ArticlePage () {
             setError("Failed to load article")
             setIsLoading(false)
         })
-    }, [])
+    }, [commentStatus])
 
     if(isLoading){
         return <Loading />
@@ -45,8 +46,8 @@ export default function ArticlePage () {
                 <br />
                 <VoteHandler votes={article.votes} comment_count={article.comment_count} date={article.created_at}/>
             </div>
-            <PostComment id={article_id} currentUser={currentUser}/>
-            <CommentList article_id={article_id} currentUser={currentUser}/>
+            <PostComment id={article_id} setCommentStatus={setCommentStatus}/>
+            <CommentList article_id={article_id} />
         </article>
     )
 }

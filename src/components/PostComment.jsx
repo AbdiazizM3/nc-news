@@ -3,20 +3,23 @@ import { postCommentById } from "../api"
 import Error from "./Error"
 import { CurrentUserContext } from "../CurrentUser"
 
-export default function PostComment({id}) {
+export default function PostComment({id, setCommentStatus}) {
     const {currentUser} = useContext(CurrentUserContext)
     const [commentInput, setCommentInput] = useState([])
     const [error, setError] = useState(null)
 
-    async function handleCommentInput(event) {
-        await setCommentInput(event.target.value)
+    function handleCommentInput(event) {
+        setCommentInput(event.target.value)
     }
 
-    async function handleCommentPost(event) {
-        await postCommentById(id, currentUser, commentInput).catch((err) => {
+    function handleCommentPost(event) {
+        postCommentById(id, currentUser, commentInput).catch((err) => {
             setError("Failed to post comment")
         })
-        await setCommentInput("")
+        setCommentInput("")
+        setCommentStatus((currStatus) => {
+            return !currStatus
+        })
     }
 
     if(error){
