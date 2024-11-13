@@ -2,6 +2,6 @@ import 'ldrs/helix'
 
 export default function Loading () {
     return(
-        <l-helix></l-helix>
+        <l-helix className="header__box"></l-helix>
     )
 }
