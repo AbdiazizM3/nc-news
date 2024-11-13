@@ -1,8 +1,10 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { postCommentById } from "../api"
 import Error from "./Error"
+import { CurrentUserContext } from "../CurrentUser"
 
-export default function PostComment({id, currentUser}) {
+export default function PostComment({id}) {
+    const {currentUser} = useContext(CurrentUserContext)
     const [commentInput, setCommentInput] = useState([])
     const [error, setError] = useState(null)
 

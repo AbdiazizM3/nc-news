@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { getCommentsByArticle } from "../api"
 import CommentCard from "./CommentCard"
 import Loading from "./Loading"
+import { CurrentUserContext } from "../CurrentUser"
 
-export default function CommentList ({article_id, currentUser}) {
+export default function CommentList ({article_id }) {
+    const {currentUser} = useContext(CurrentUserContext)
     const [comments, setComments] = useState([])
     const [isLoading, setIsLoading] = useState(false)
 

@@ -1,8 +1,14 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { CurrentUserContext } from "../CurrentUser";
 
-export default function Header ({setCurrentUser}) {
+export default function Header () {
+    const {setCurrentUser} = useContext(CurrentUserContext)
+    
     function resetUser() {
+        localStorage.removeItem("userDetails")
         setCurrentUser("guest")
+        localStorage.setItem("userDetails", "guest")
     }
 
     return(

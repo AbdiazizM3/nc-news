@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import React from 'react'
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import Header from './components/Header'
@@ -9,22 +9,28 @@ import ArticlePage from './components/ArticlePage'
 import Topics from './components/Topics'
 import './App.css'
 import PageNotFound from './components/PageNotFound'
+import { CurrentUserContext } from './CurrentUser'
 
 function App() {
-  const [currentUser, setCurrentUser] = useState("")
+  const {setCurrentUser} = useContext(CurrentUserContext)
+
+  useEffect(() => {
+    const user = localStorage.getItem("userDetails")
+    setCurrentUser(user)
+  }, [])
 
   return (
     <>
       <div>
         <Router>
-        <Header setCurrentUser={setCurrentUser}/>
+        <Header />
           <Routes>
-          <Route path="/" element={<Login setCurrentUser={setCurrentUser}/>} />
-          <Route path="/home" element={<Home currentUser={currentUser}/>} />
+          <Route path="/" element={<Login />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/topics" element={<Topics />} />
           <Route path="/:topic/articles" element={<Articles />} />
-          <Route path="/home/:article_id" element={<ArticlePage currentUser={currentUser}/>} />
-          <Route path="/:topic/articles/:article_id" element={<ArticlePage currentUser={currentUser}/>} />
+          <Route path="/home/:article_id" element={<ArticlePage />} />
+          <Route path="/:topic/articles/:article_id" element={<ArticlePage />} />
           <Route path='*' exact={true} element={<PageNotFound />} />
           </Routes>
         </Router>

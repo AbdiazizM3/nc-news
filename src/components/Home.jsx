@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Error from "./Error"
 import { getArticleByTopic } from "../api"
 import Loading from "./Loading"
 import ArticleList from "./ArticleList";
 import SortDrop from "./SortDrop";
+import { CurrentUserContext } from "../CurrentUser";
 
-export default function Home ({currentUser}) {
+export default function Home () {
+    const {currentUser} = useContext(CurrentUserContext)
     const [articles, setArticles] = useState([])
     const [sort, setSort] = useState("created_at")
     const [order, setOrder] = useState("DESC")

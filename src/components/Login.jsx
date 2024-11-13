@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import getUsernames from "../api";
 import { Link } from "react-router-dom";
 import Loading from "./Loading";
+import { CurrentUserContext } from "../CurrentUser";
 
-export default function Login ({setCurrentUser}) {
+export default function Login () {
+    const {setCurrentUser} = useContext(CurrentUserContext)
     const [usernames, setUsernames] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
     function selectUser (event) {
         setCurrentUser(event.currentTarget.value)
+        localStorage.setItem("userDetails", event.currentTarget.value)
     }
 
     useEffect(() => {

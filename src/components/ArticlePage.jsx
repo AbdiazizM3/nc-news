@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getArticleById, getCommentsByArticle} from "../api";
+import { getArticleById} from "../api";
 import Loading from "./Loading";
 import CommentList from "./CommentList"
 import VoteHandler from "./VoteHandler";
 import PostComment from "./PostComment";
 import Error from "./Error"
+import { CurrentUserContext } from "../CurrentUser";
 
-export default function ArticlePage ({currentUser}) {
+export default function ArticlePage () {
+    const {currentUser} = useContext(CurrentUserContext)
     const {article_id} = useParams()
     const [article, setArticle] = useState({})
     const [isLoading, setIsLoading] = useState(false)
