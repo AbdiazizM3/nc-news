@@ -35,9 +35,16 @@ export async function getCommentsByArticle(id) {
   return response.data;
 }
 
-export async function updateArticleVotesById(id) {
+export async function likeArticleVotesById(id) {
   const response = await axios.patch(`${baseUrl}/articles/${id}`, {
     inc_votes: 1,
+  });
+  return response.data;
+}
+
+export async function dislikeArticleVotesById(id) {
+  const response = await axios.patch(`${baseUrl}/articles/${id}`, {
+    inc_votes: -1,
   });
   return response.data;
 }

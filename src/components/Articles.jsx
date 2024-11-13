@@ -41,9 +41,9 @@ export default function Articles () {
     }
 
     return (
-        <article className="article__list">
+        <div className="article__list">
             <SortDrop sort={sort} order={order} setSort={setSort} setOrder={setOrder} />
             <ArticleList articles={articles} />
-        </article>
+        </div>
     )
 }

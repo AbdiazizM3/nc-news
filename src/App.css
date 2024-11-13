@@ -22,10 +22,6 @@ img{
   margin-left: 35%;
 }
 
-.header__box{
-  text-align: center;
-}
-
 .user__login{
   display: inline-block;
   text-align: center;
@@ -39,22 +35,6 @@ img{
 #user__avatar{
   width: 10rem;
   height: 10rem;
-}
-
-.article__box{
-  display: block;
-  text-align: center;
-  border: 0.1rem solid #4A0D67;
-  margin-bottom: 1rem;
-  height: 20%;
-  width: 125%;
-}
-
-.article__box p{
-  display: flexbox;
-  text-align: center;
-  margin-left: 2%;
-  margin-right: 2%;
 }
 
 .article__details{
@@ -89,20 +69,23 @@ img{
   margin-left: 2%;
 }
 
-.article__filter{
-  display: inline;
+#comment{
+  width: 20%;
+}
+
+.header__box{
+  text-align: center;
 }
 
 .article__list{
   text-align: center;
 }
 
-.topic__list{
-  display: inline-block;
+.article__box{
+  display: block;
   text-align: center;
-  border: 0.1rem #4A0D67;
-}
-
-#comment{
-  width: 20%;
+  border: 0.1rem solid #4A0D67;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  margin-right: 5rem;
 }
