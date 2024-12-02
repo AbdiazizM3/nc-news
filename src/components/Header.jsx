@@ -12,12 +12,18 @@ export default function Header () {
     }
 
     return(
-        <div className="header__box">
-            <h1>NC NEWS</h1>
-            <nav>
-            <button><Link to="/home">Home</Link></button>
-            <button><Link to="/topics">Topics</Link></button>
-            <button onClick={resetUser}><Link to="/">Logout</Link></button>
+        <div className="bg-slate-600 text-slate-100 w-full">
+            <h1 className="text-center">NC NEWS</h1>
+            <nav className="flex justify-center space-x-4 py-2">
+            <Link to="/home">
+            <button className="bg-indigo-600 hover:bg-indigo-300 text-slate-100 py-2 px-4 rounded">Home</button>
+            </Link>
+            <Link to="/topics">
+            <button className="bg-indigo-600 hover:bg-indigo-300 text-slate-100 py-2 px-4 rounded">Topics</button>
+            </Link>
+            <Link to="/">
+            <button onClick={resetUser} className="bg-indigo-600 hover:bg-indigo-300 text-slate-100 py-2 px-4 rounded">Logout</button>
+            </Link>
             </nav>
         </div>
     )

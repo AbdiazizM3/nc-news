@@ -33,11 +33,13 @@ export default function Home () {
     }
 
     return (
-        <article className="article__list">
-                <h2>Welcome back {currentUser}</h2>
-                <h3>Here is a list of all articles: </h3>
-                <SortDrop sort={sort} order={order} setSort={setSort} setOrder={setOrder}/>
-                <ArticleList articles={articles}/>
-        </article>
+        <div className="flex items-center justify-center min-h-screen">
+        <div className="flex flex-col items-center space-y-4 w-full max-w-3xl px-4 py-6 bg-white shadow-lg rounded-lg">
+        <h2 className="font-bold">Welcome back {currentUser}</h2>
+        <h3>Here is a list of all articles: </h3>
+                <SortDrop sort={sort} order={order} setSort={setSort} setOrder={setOrder} />
+                <ArticleList articles={articles} />
+        </div>
+    </div>
     )
 }

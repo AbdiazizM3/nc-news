@@ -41,9 +41,11 @@ export default function Articles () {
     }
 
     return (
-        <div className="article__list">
-            <SortDrop sort={sort} order={order} setSort={setSort} setOrder={setOrder} />
-            <ArticleList articles={articles} />
+        <div className="flex items-center justify-center min-h-screen">
+            <div className="flex flex-col items-center space-y-4 w-full max-w-3xl px-4 py-6 bg-white shadow-lg rounded-lg">
+                    <SortDrop sort={sort} order={order} setSort={setSort} setOrder={setOrder} />
+                    <ArticleList articles={articles} />
+            </div>
         </div>
     )
 }
