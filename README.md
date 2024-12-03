@@ -1,6 +1,6 @@
 # NC-NEWS
 
-Current Deployed Version: https://creative-croissant-547fd0.netlify.app/
+Current Deployed Version: https://creative-croissant-547fd0.netlify.app
 
 This app is a social news site which allows user to surf through articles which are seperated into topics.
 Users have the ability to comment on articles to share their views on the topic or to simply give it a like.
