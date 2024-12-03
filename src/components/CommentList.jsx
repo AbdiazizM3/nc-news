@@ -4,7 +4,7 @@ import CommentCard from "./CommentCard"
 import Loading from "./Loading"
 import { CurrentUserContext } from "../CurrentUser"
 
-export default function CommentList ({article_id }) {
+export default function CommentList ({ article_id }) {
     const [comments, setComments] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [deleteStatus, setDeleteStatus] = useState(false)

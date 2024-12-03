@@ -13,13 +13,15 @@ export default function PostComment({id, setCommentStatus}) {
     }
 
     function handleCommentPost(event) {
-        postCommentById(id, currentUser, commentInput).catch((err) => {
+        postCommentById(id, currentUser, commentInput).then(() => {
+            setCommentStatus((currStatus) => {
+                return !currStatus
+            })
+        })
+        .catch((err) => {
             setError("Failed to post comment")
         })
         setCommentInput("")
-        setCommentStatus((currStatus) => {
-            return !currStatus
-        })
     }
 
     if(error){

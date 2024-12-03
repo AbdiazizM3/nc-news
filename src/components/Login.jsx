@@ -27,15 +27,19 @@ export default function Login () {
 
     return(
         <article>
-            <div className="relative inline items-center justify-center w-12 h-12 sm:p-12 md:p-14 lg:p-16 mx-auto">
-                <h2>Pick a User</h2>
-                <ul>
+            <div className="flex flex-col justify-center items-center space-y-4 w-full px-4 py-6">
+                <h2 className="font-bold">Pick a User</h2>
+                <ul className="space-y-4">
                 {usernames.map((user, index) => {
                     return(
-                        <li key={index} className="flex w-20 h-20 mt-11 shadow-lg border-2">
-                            <img src={user.avatar_url} alt="User avatar" id="user__avatar" />
-                            <Link to="/home"><button onClick={selectUser} value={user.username}>{user.username}</button></Link>
-                        </li>
+                    <li key={index} className="flex flex-col justify-center items-center space-y-12">
+                        <Link to="/home">
+                        <button onClick={selectUser} value={user.username}>
+                            <img src={user.avatar_url} alt={`User avatar for ${user.username}`} id="user__avatar" className="object-cover w-20 h-20 rounded-full border-solid border-2 border-slate-600" />
+                            <p className="text-center text-sm">{user.username}</p>
+                        </button>
+                        </Link>
+                    </li>
                     )
                 })}
                 </ul>

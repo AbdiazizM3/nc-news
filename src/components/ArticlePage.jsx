@@ -11,6 +11,7 @@ export default function ArticlePage () {
     const {article_id} = useParams()
     const [article, setArticle] = useState({})
     const [isLoading, setIsLoading] = useState(false)
+    const [deleteStatus, setDeleteStatus] = useState(false)
     const [commentStatus, setCommentStatus] = useState(false)
     const [error, setError] = useState(null)
 
@@ -25,7 +26,7 @@ export default function ArticlePage () {
             setError("Failed to load article")
             setIsLoading(false)
         })
-    }, [commentStatus])
+    }, [commentStatus, deleteStatus])
 
     if(isLoading){
         return <Loading />
@@ -56,7 +57,7 @@ export default function ArticlePage () {
                 <VoteHandler votes={article.votes} comment_count={article.comment_count} date={readableDate}/>
             </div>
             <PostComment id={article_id} setCommentStatus={setCommentStatus}/>
-            <CommentList article_id={article_id} />
+            <CommentList article_id={article_id} setDeleteStatus={setDeleteStatus}/>
         </article>
     )
 }
