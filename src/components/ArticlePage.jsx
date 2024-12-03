@@ -35,16 +35,25 @@ export default function ArticlePage () {
         return <Error message={error}/>
     }
 
+    const isoDate = new Date(article.created_at)
+
+    const readableDate = isoDate.toLocaleDateString('en-GB', {
+        weekday: 'long',
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric',
+    })
+
     return(
-        <article>
-            <div>
-                <h2>{article.author}</h2>
-                <h2>{article.title}</h2>
-                <h3>Topic: {article.topic}</h3>
-                <p>{article.body}</p>
-                <img src={article.article_img_url} alt="Picture of related article" id="article__img"/>
+        <article className="flex flex-col justify-center items-center space-y-4 w-full max-w-3xl px-4 py-6">
+            <div className="flex flex-col justify-center items-center">
+                <h2 className="mb-2">{article.author}</h2>
+                <h2 className="mb-2">{article.title}</h2>
+                <h3 className="mb-2">Topic: {article.topic}</h3>
+                <p className="mb-2">{article.body}</p>
+                <img src={article.article_img_url} alt="Picture of related article" className="mb-2"/>
                 <br />
-                <VoteHandler votes={article.votes} comment_count={article.comment_count} date={article.created_at}/>
+                <VoteHandler votes={article.votes} comment_count={article.comment_count} date={readableDate}/>
             </div>
             <PostComment id={article_id} setCommentStatus={setCommentStatus}/>
             <CommentList article_id={article_id} />
