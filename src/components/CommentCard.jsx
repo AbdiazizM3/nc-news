@@ -13,12 +13,14 @@ export default function CommentCard({comment, setDeleteStatus}) {
         year: 'numeric',
     })
 
-    return(<div className="comment__list">
-            <h3>{comment.author}</h3>
-            <p>{comment.body}</p>
-            <p className="comment__list --details">votes: {comment.votes}</p>
-            <p className="comment__list --details">{readableDate}</p>
-            <DeleteButton id={comment.comment_id} author={comment.author} username={currentUser} setDeleteStatus={setDeleteStatus}/>
+    return(<div className="justify-center">
+                <h2 className="font-bold">{comment.author}</h2>
+                <p>{comment.body}</p>
+                <div className="flex flex-row space-x-12">
+                    <p>votes: {comment.votes}</p>
+                    <p>{readableDate}</p>
+                </div>
+                <DeleteButton id={comment.comment_id} author={comment.author} username={currentUser} setDeleteStatus={setDeleteStatus}/>
             </div>
     )
 }

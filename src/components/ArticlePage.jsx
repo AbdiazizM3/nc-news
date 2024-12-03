@@ -47,7 +47,7 @@ export default function ArticlePage () {
     return(
         <article className="flex flex-col justify-center items-center space-y-4 w-full max-w-3xl px-4 py-6">
             <div className="flex flex-col justify-center items-center">
-                <h2 className="mb-2">{article.author}</h2>
+                <h2 className="mb-2 font-bold">{article.author}</h2>
                 <h2 className="mb-2">{article.title}</h2>
                 <h3 className="mb-2">Topic: {article.topic}</h3>
                 <p className="mb-2">{article.body}</p>

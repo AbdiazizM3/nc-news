@@ -29,12 +29,12 @@ export default function Topics () {
     }
 
     return(
-        <div className="topic__list">
+        <div className="flex justify-center items-center">
             <ul>
             {topics.map((topic, index) => {
                 return(
-                    <li key={index}>
-                        <button><Link to={`/${topic.slug}/articles`}>{topic.slug}</Link></button>
+                    <li key={index} className="flex">
+                        <Link to={`/${topic.slug}/articles`}><button className="bg-indigo-600 hover:bg-indigo-300 border-solid border-2 border-indigo-600 text-slate-100 px-4 py-2 shadow-lg rounded-lg mt-4">{topic.slug}</button></Link>
                     </li>
                 )
             })}

@@ -27,10 +27,10 @@ export default function PostComment({id, setCommentStatus}) {
     }
 
     return(
-        <div className="comment__input">
+        <div>
             <label htmlFor="comment">Comment: </label>
-            <input type="comment" id="comment" value={commentInput} onChange={handleCommentInput}/>
-            <button onClick={handleCommentPost}>Post</button>
+            <input className="border-solid border-2 border-slate-600" type="comment" id="comment" value={commentInput} onChange={handleCommentInput}/>
+            <button className="border-solid border-2 border-slate-600 bg-indigo-600 hover:bg-indigo-300 text-slate-100 px-4 py-2 shadow-lg rounded-lg ml-2" onClick={handleCommentPost}>Post</button>
         </div>
     )
 }

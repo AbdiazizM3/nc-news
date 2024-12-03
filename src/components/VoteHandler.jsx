@@ -35,7 +35,7 @@ export default function VoteHandler({votes, comment_count, date}) {
 
     if(isVote){
         return(
-            <div className="article__data">
+            <div className="flex justify-center space-x-8">
                 <button className="article__details --votes" onClick={downVote}>👎</button>
                 <p className="article__details --votes">Votes: {voteCount}</p>
                 <p className="article__details">comments: {comment_count}</p>
@@ -45,7 +45,7 @@ export default function VoteHandler({votes, comment_count, date}) {
     }
 
     return(
-        <div className="article__data">
+        <div className="flex justify-center space-x-8">
             <button className="article__details --votes" onClick={upVote}>👍</button>
             <p className="article__details --votes">Votes: {voteCount}</p>
             <p className="article__details">comments: {comment_count}</p>

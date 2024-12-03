@@ -25,12 +25,12 @@ export default function CommentList ({article_id }) {
     }
 
     return(
-        <div className="comment__list">
-            <h2>Comments</h2>
+        <div>
+            <h2 className="font-bold">Comments</h2>
             <ul>
                 {comments.map((comment) => {
                     return (
-                        <li key={comment.comment_id} className="comment__box">
+                        <li key={comment.comment_id} className="border-solid border-2 border-indigo-600 py-9 mb-6 mt-2 rounded">
                         <CommentCard comment={comment} setDeleteStatus={setDeleteStatus}/>
                         </li>
                     )
