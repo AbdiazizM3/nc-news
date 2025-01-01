@@ -19,7 +19,7 @@ export default function ArticlePage () {
 
     useEffect(() => {
         setIsLoading(true)
-        getArticleById(article_id).then((data) => {
+        getArticleById(article_id, page).then((data) => {
             setArticle(data.article)
             setIsLoading(false)
         }).catch((err) => {

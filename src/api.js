@@ -12,8 +12,8 @@ export async function getTopics() {
   return response.data;
 }
 
-export async function getArticleByTopic(topic, sort, order) {
-  let topicQuery = `${baseUrl}/articles?topic=${topic}`;
+export async function getArticleByTopic(topic, sort, order, page) {
+  let topicQuery = `${baseUrl}/articles?topic=${topic}&&p=${page}`;
   if (sort) {
     topicQuery += `&&sort=${sort}`;
   }

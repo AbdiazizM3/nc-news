@@ -13,16 +13,28 @@ export default function Home () {
     const [order, setOrder] = useState("DESC")
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)
+    const [page, setPage] = useState(1)
 
     useEffect(() => {
         setIsLoading(true)
-        getArticleByTopic("", sort, order).then(({articles}) => {
+        getArticleByTopic("", sort, order, page).then(({articles}) => {
             setArticles(articles)
             setIsLoading(false)
         }).catch((err) => {
             setError("Could not find any articles")
         })
-    }, [sort, order])
+    }, [sort, order, page])
+
+    function handlePageDown() {
+        setPage((currPage) => {
+            return currPage -= 1
+        })
+    }
+    function handlePageUp() {
+        setPage((currPage) => {
+            return currPage += 1
+        })
+    }
 
     if(isLoading){
         return <Loading />
@@ -39,7 +51,12 @@ export default function Home () {
         <h3>Here is a list of all articles: </h3>
                 <SortDrop sort={sort} order={order} setSort={setSort} setOrder={setOrder} />
                 <ArticleList articles={articles} />
+                <div className="flex space-x-2">
+                        {page === 1 ? <button disabled={true} onClick={handlePageDown}>{"<"}</button> : <button onClick={handlePageDown}>{"<"}</button>}
+                        <p>{page}</p>
+                        {articles.length < 10 ? <button disabled={true} onClick={handlePageUp}>{">"}</button> : <button onClick={handlePageUp}>{">"}</button>}
+                </div>
+            </div>
         </div>
-    </div>
     )
 }
