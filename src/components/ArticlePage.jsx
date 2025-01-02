@@ -15,11 +15,9 @@ export default function ArticlePage () {
     const [commentStatus, setCommentStatus] = useState(false)
     const [error, setError] = useState(null)
 
-    console.log("Gg")
-
     useEffect(() => {
         setIsLoading(true)
-        getArticleById(article_id, page).then((data) => {
+        getArticleById(article_id).then((data) => {
             setArticle(data.article)
             setIsLoading(false)
         }).catch((err) => {
