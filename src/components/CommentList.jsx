@@ -8,17 +8,29 @@ export default function CommentList ({ article_id }) {
     const [comments, setComments] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [deleteStatus, setDeleteStatus] = useState(false)
+    const [page, setPage] = useState(1)
 
     useEffect(() => {
         setIsLoading(true)
-        getCommentsByArticle(article_id).then((data) => {
+        getCommentsByArticle(article_id, page).then((data) => {
             setComments(data.comments)
             setIsLoading(false)
         }).catch((err) => {
             setError("Failed to load comments")
             setIsLoading(false)
         })
-    }, [deleteStatus])
+    }, [deleteStatus, page])
+
+    function handlePageDown() {
+        setPage((currPage) => {
+            return currPage -= 1
+        })
+    }
+    function handlePageUp() {
+        setPage((currPage) => {
+            return currPage += 1
+        })
+    }
 
     if(isLoading){
         return <Loading />
@@ -36,6 +48,11 @@ export default function CommentList ({ article_id }) {
                     )
                 })}
             </ul>
+            <div className="flex justify-center space-x-2">
+                {page === 1 ? <button disabled={true} onClick={handlePageDown}>{"<"}</button> : <button onClick={handlePageDown}>{"<"}</button>}
+                <p>{page}</p>
+                {comments.length < 10 ? <button disabled={true} onClick={handlePageUp}>{">"}</button> : <button onClick={handlePageUp}>{">"}</button>}
+            </div>
         </div>
     )
 }

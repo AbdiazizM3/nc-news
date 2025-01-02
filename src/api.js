@@ -30,8 +30,10 @@ export async function getArticleById(id) {
   return response.data;
 }
 
-export async function getCommentsByArticle(id) {
-  const response = await axios.get(`${baseUrl}/articles/${id}/comments`);
+export async function getCommentsByArticle(id, page) {
+  const response = await axios.get(
+    `${baseUrl}/articles/${id}/comments?p=${page}`
+  );
   return response.data;
 }
 
