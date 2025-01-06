@@ -39,9 +39,8 @@ export default function VoteHandler({votes, comment_count, date}) {
 
     return(
         <div className="flex justify-center space-x-8">
-            {isLiked === "liked" ? <button disabled={true} className="border-solid border-2 border-slate-900 text-slate-100 bg-red-600 px-2 rounded">+</button> : <button className="border-solid border-2 border-slate-900 text-slate-100 bg-red-600 hover:bg-red-300 px-2 rounded" onClick={upVote}>+</button>}
+            {isLiked === "liked" ? <button className="border-solid border-2 border-slate-900 text-slate-100 bg-red-600 hover:bg-red-300 px-2 rounded" onClick={downVote}>v</button> : <button className="border-solid border-2 border-slate-900 px-2 rounded" onClick={upVote}>ʌ</button>}
             <p>Votes: {voteCount}</p>
-            {isLiked === "disliked" ? <button disabled={true} className="border-solid border-2 border-slate-900 text-slate-100 bg-indigo-600 px-2 rounded">-</button> : <button className="border-solid border-2 border-slate-900 text-slate-100 bg-indigo-600 hover:bg-indigo-300 px-2 rounded" onClick={downVote}>-</button>}
             <p>comments: {comment_count}</p>
             <p>{date}</p>
         </div>
