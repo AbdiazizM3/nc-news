@@ -36,6 +36,20 @@ export default function CommentList ({ article_id }) {
         return <Loading />
     }
 
+    if(comments.length < 1){
+        return (
+            <div className="space-y-2">
+                <h2 className="font-bold">Comments</h2>
+                <p>No Comments</p>
+                <div className="flex justify-center space-x-2">
+                {page === 1 ? <button disabled={true} onClick={handlePageDown}>{"<"}</button> : <button onClick={handlePageDown}>{"<"}</button>}
+                <p>{page}</p>
+                {comments.length < 10 ? <button disabled={true} onClick={handlePageUp}>{">"}</button> : <button onClick={handlePageUp}>{">"}</button>}
+            </div>
+            </div>
+        )
+    }
+
     return(
         <div>
             <h2 className="font-bold">Comments</h2>
