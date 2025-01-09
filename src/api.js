@@ -63,3 +63,8 @@ export async function deleteCommentById(id) {
   const response = await axios.delete(`${baseUrl}/comments/${id}`);
   return response.data;
 }
+
+export async function getUserByUsername(username) {
+  const response = await axios.get(`${baseUrl}/users/${username}`);
+  return response.data;
+}

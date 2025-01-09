@@ -35,7 +35,7 @@ export default function Login () {
                     <li key={index} className="flex flex-col justify-center items-center space-y-12">
                         <Link to="/home">
                         <button onClick={selectUser} value={user.username}>
-                            <img src={user.avatar_url} alt={`User avatar for ${user.username}`} id="user__avatar" className="object-cover w-20 h-20 rounded-full border-solid border-2 border-slate-600" />
+                            <img src={user.avatar_url} alt={`User avatar for ${user.username}`} id="user__avatar" className="object-cover w-20 h-20 rounded-full border-solid border-2 border-slate-900" />
                             <p className="text-center text-sm">{user.username}</p>
                         </button>
                         </Link>

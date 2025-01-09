@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import Error from "./Error"
-import { getArticleByTopic } from "../api"
+import { getArticleByTopic, getUserByUsername } from "../api"
 import Loading from "./Loading"
 import ArticleList from "./ArticleList";
 import SortDrop from "./SortDrop";
@@ -14,9 +14,14 @@ export default function Home () {
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)
     const [page, setPage] = useState(1)
+    const [userDetails, setUserDetails] = useState(null)
+    const name = localStorage.getItem("userDetails")
 
     useEffect(() => {
         setIsLoading(true)
+        getUserByUsername(name).then(({user}) => {
+            setUserDetails(user)
+        })
         getArticleByTopic("", sort, order, page).then(({articles}) => {
             setArticles(articles)
             setIsLoading(false)
@@ -46,9 +51,12 @@ export default function Home () {
 
     return (
         <div className="flex items-center justify-center min-h-screen">
-        <div className="flex flex-col items-center space-y-4 w-full max-w-3xl px-4 py-6 bg-white shadow-lg rounded-lg">
-        <h2 className="font-bold">Welcome back {currentUser}</h2>
-        <h3>Here is a list of all articles: </h3>
+            <div className="flex flex-col items-center space-y-4 w-full max-w-3xl px-4 py-6 bg-white shadow-lg rounded-lg">
+                <div className="flex items-center space-x-2">
+                    <img src={userDetails.avatar_url} alt={`User avatar for ${userDetails.name}`} className="object-cover w-20 h-20 rounded-full border-solid border-2 border-slate-900" />
+                    <h2 className="font-bold">Welcome back {userDetails.name}</h2>
+                </div>
+                <h3>Here is a list of all articles: </h3>
                 <SortDrop sort={sort} order={order} setSort={setSort} setOrder={setOrder} />
                 <ArticleList articles={articles} />
                 <div className="flex space-x-2">
