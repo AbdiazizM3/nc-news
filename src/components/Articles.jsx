@@ -16,18 +16,20 @@ export default function Articles () {
 
     useEffect(() => {
         setIsLoading(true)
-        getArticleByTopic(topic, sort, order, page).then(({articles}) => {
-            if(articles.length === 0){
-                return Promise.reject([])
-            }
-            else{
-                setArticles(articles)
+        setError(null)
+
+        const fetchData = async () => {
+            try{
+                const topicArticleResponse = await getArticleByTopic(topic, sort, order, page)
+                setArticles(topicArticleResponse.articles)
+            }catch (err) {
+                setError(err.message || "Could not fetch data. Please try again later.")
+            }finally {
                 setIsLoading(false)
             }
-        }).catch((err) => {
-            setError("Could not find any articles under the specified topic.")
-            setIsLoading(false)
-        })
+        }
+
+        fetchData();
     }, [sort, order, page])
 
     function handlePageDown() {

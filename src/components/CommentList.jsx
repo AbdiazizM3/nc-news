@@ -9,16 +9,24 @@ export default function CommentList ({ article_id }) {
     const [isLoading, setIsLoading] = useState(false)
     const [deleteStatus, setDeleteStatus] = useState(false)
     const [page, setPage] = useState(1)
+    const [error, setError] = useState(null)
 
     useEffect(() => {
         setIsLoading(true)
-        getCommentsByArticle(article_id, page).then((data) => {
-            setComments(data.comments)
-            setIsLoading(false)
-        }).catch((err) => {
-            setError("Failed to load comments")
-            setIsLoading(false)
-        })
+        setError(null)
+
+        const fetchData = async () => {
+            try{
+                const commentResponse = await getCommentsByArticle(article_id, page)
+                setComments(commentResponse.comments)
+            }catch (err) {
+                setError(err.message || "Could not fetch data. Please try again later")
+            }finally {
+                setIsLoading(false)
+            }
+        }
+
+        fetchData();
     }, [deleteStatus, page])
 
     function handlePageDown() {
@@ -35,6 +43,13 @@ export default function CommentList ({ article_id }) {
     if(isLoading){
         return <Loading />
     }
+
+    if(error){
+        return <div>
+        <h2>404 - Error</h2>
+        <p>{error}</p>
+         </div>
+     }
 
     if(comments.length < 1){
         return (

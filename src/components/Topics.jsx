@@ -11,13 +11,20 @@ export default function Topics () {
 
     useEffect(() => {
         setIsLoading(true)
-        getTopics().then(({topics}) => {
-            setTopics(topics)
-            setIsLoading(false)
-        }).catch((err) => {
-            setError("Could not find any topics :(")
-            setIsLoading(false)
-        })
+        setError(null)
+
+        const fetchData = async () => {
+            try {
+                const topicResponse = await getTopics()
+                setTopics(topicResponse.topics)
+            }catch (err) {
+                setError(err.message || "Could not fetch data. Try again later.")
+            }finally {
+                setIsLoading(false)
+            }
+        }
+        
+        fetchData();
     }, [])
 
     if(isLoading){

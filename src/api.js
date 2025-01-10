@@ -8,63 +8,108 @@ export default async function getUsernames() {
 }
 
 export async function getTopics() {
-  const response = await axios.get(`${baseUrl}/topics`);
-  return response.data;
+  try {
+    const response = await axios.get(`${baseUrl}/topics`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching topics:", error);
+    throw new Error("Unable to fetch topics");
+  }
 }
 
 export async function getArticleByTopic(topic, sort, order, page) {
-  let topicQuery = `${baseUrl}/articles?topic=${topic}&&p=${page}`;
-  if (sort) {
-    topicQuery += `&&sort=${sort}`;
-  }
+  try {
+    let topicQuery = `${baseUrl}/articles?topic=${topic}&&p=${page}`;
+    if (sort) {
+      topicQuery += `&&sort=${sort}`;
+    }
 
-  if (order) {
-    topicQuery += `&&order=${order}`;
+    if (order) {
+      topicQuery += `&&order=${order}`;
+    }
+    const response = await axios.get(topicQuery);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching articles:", error);
+    throw new Error("Unable to fetch articles");
   }
-  const response = await axios.get(topicQuery);
-  return response.data;
 }
 
 export async function getArticleById(id) {
-  const response = await axios.get(`${baseUrl}/articles/${id}`);
-  return response.data;
+  try {
+    const response = await axios.get(`${baseUrl}/articles/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching article:", error);
+    throw new Error("Unable to fetch article");
+  }
 }
 
 export async function getCommentsByArticle(id, page) {
-  const response = await axios.get(
-    `${baseUrl}/articles/${id}/comments?p=${page}`
-  );
-  return response.data;
+  try {
+    const response = await axios.get(
+      `${baseUrl}/articles/${id}/comments?p=${page}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching comments:", error);
+    throw new Error("Unable to fetch comments");
+  }
 }
 
 export async function likeArticleVotesById(id) {
-  const response = await axios.patch(`${baseUrl}/articles/${id}`, {
-    inc_votes: 1,
-  });
-  return response.data;
+  try {
+    const response = await axios.patch(`${baseUrl}/articles/${id}`, {
+      inc_votes: 1,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error liking article:", error);
+    throw new Error("Unable to like article");
+  }
 }
 
 export async function dislikeArticleVotesById(id) {
-  const response = await axios.patch(`${baseUrl}/articles/${id}`, {
-    inc_votes: -1,
-  });
-  return response.data;
+  try {
+    const response = await axios.patch(`${baseUrl}/articles/${id}`, {
+      inc_votes: -1,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error disliking article:", error);
+    throw new Error("Unable to dislike article");
+  }
 }
 
 export async function postCommentById(id, username, commentToPost) {
-  const response = await axios.post(`${baseUrl}/articles/${id}/comments`, {
-    username: username,
-    body: commentToPost,
-  });
-  return response.data;
+  try {
+    const response = await axios.post(`${baseUrl}/articles/${id}/comments`, {
+      username: username,
+      body: commentToPost,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error posting comment:", error);
+    throw new Error("Unable to post comment");
+  }
 }
 
 export async function deleteCommentById(id) {
-  const response = await axios.delete(`${baseUrl}/comments/${id}`);
-  return response.data;
+  try {
+    const response = await axios.delete(`${baseUrl}/comments/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching topics:", error);
+    throw new Error("Unable to fetch topics");
+  }
 }
 
 export async function getUserByUsername(username) {
-  const response = await axios.get(`${baseUrl}/users/${username}`);
-  return response.data;
+  try {
+    const response = await axios.get(`${baseUrl}/users/${username}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching user:", error);
+    throw new Error("Unable to fetch user");
+  }
 }

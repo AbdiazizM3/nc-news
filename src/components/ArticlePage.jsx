@@ -17,13 +17,20 @@ export default function ArticlePage () {
 
     useEffect(() => {
         setIsLoading(true)
-        getArticleById(article_id).then((data) => {
-            setArticle(data.article)
-            setIsLoading(false)
-        }).catch((err) => {
-            setError("Failed to load article")
-            setIsLoading(false)
-        })
+        setError(null)
+
+        const fetchData = async () => {
+            try{
+                const articleResponse = await getArticleById(article_id)
+                setArticle(articleResponse.article)
+            }catch (err) {
+                setError(err.message || "Could not fetch data. Please try again later.")
+            }finally{
+                setIsLoading(false)
+            }
+        }
+
+        fetchData();
     }, [commentStatus, deleteStatus])
 
     if(isLoading){

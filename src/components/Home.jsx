@@ -18,17 +18,25 @@ export default function Home () {
     const name = localStorage.getItem("userDetails")
 
     useEffect(() => {
-        setIsLoading(true)
-        getUserByUsername(name).then(({user}) => {
-            setUserDetails(user)
-        })
-        getArticleByTopic("", sort, order, page).then(({articles}) => {
-            setArticles(articles)
-            setIsLoading(false)
-        }).catch((err) => {
-            setError("Could not find any articles")
-        })
-    }, [sort, order, page])
+        setIsLoading(true);
+        setError(null);
+    
+        const fetchData = async () => {
+            try {
+                const userResponse = await getUserByUsername(name);
+                setUserDetails(userResponse.user);
+    
+                const articleResponse = await getArticleByTopic("", sort, order, page);
+                setArticles(articleResponse.articles);
+            } catch (err) {
+                setError(err.message || "Could not fetch data. Please try again later.");
+            } finally {
+                setIsLoading(false);
+            }
+        };
+    
+        fetchData();
+    }, [sort, order, page, name]);
 
     function handlePageDown() {
         setPage((currPage) => {
