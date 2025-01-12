@@ -10,6 +10,7 @@ import Topics from './components/Topics'
 import './App.css'
 import PageNotFound from './components/PageNotFound'
 import { CurrentUserContext } from './CurrentUser'
+import CreateArticle from './components/CreateArticle'
 
 function App() {
   const {setCurrentUser} = useContext(CurrentUserContext)
@@ -31,6 +32,7 @@ function App() {
           <Route path="/:topic/articles" element={<Articles />} />
           <Route path="/home/:article_id" element={<ArticlePage />} />
           <Route path="/:topic/articles/:article_id" element={<ArticlePage />} />
+          <Route path="/upload" element={<CreateArticle />} />
           <Route path='*' exact={true} element={<PageNotFound />} />
           </Routes>
         </Router>

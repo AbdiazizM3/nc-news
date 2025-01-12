@@ -9,7 +9,7 @@ export default function SortDrop({sort, order, setSort, setOrder}) {
 
     return (
         <div className="flex justify-center space-x-4 mb-4 border-2 border-solid border-slate-600">
-            <select name="sort" id="sort" className="article__filter --sort" value={sort} onChange={handleSort}>
+            <select name="sort" id="sort" value={sort} onChange={handleSort}>
                 <option value="created_at">Recent</option>
                 <option value="votes">Popular</option>
                 <option value="comment_count">Most Talked about</option>

@@ -4,9 +4,12 @@ import Loading from "./Loading";
 import ArticleList from "./ArticleList";
 import { useParams } from "react-router-dom";
 import SortDrop from "./SortDrop";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Articles () {
     const {topic} = useParams()
+    const navigate = useNavigate()
     const [articles, setArticles] = useState([])
     const [sort, setSort] = useState("created_at")
     const [order, setOrder] = useState("DESC")
@@ -43,6 +46,10 @@ export default function Articles () {
         })
     }
 
+    function navigateToPage() {
+        navigate("/upload")
+    }
+
     if(isLoading){
         return <Loading />
     }
@@ -70,7 +77,7 @@ export default function Articles () {
 
     return (
         <div className="flex items-center justify-center min-h-screen">
-            <div className="flex flex-col items-center space-y-4 w-full max-w-3xl px-4 py-6 bg-white shadow-lg rounded-lg">
+            <div className="flex flex-col items-center space-y-4 w-full max-w-3xl px-4 py-6 shadow-lg rounded-lg">
                     <SortDrop sort={sort} order={order} setSort={setSort} setOrder={setOrder} />
                     <ArticleList articles={articles} />
                     <div className="flex space-x-2">
@@ -79,6 +86,7 @@ export default function Articles () {
                         {articles.length < 10 ? <button disabled={true} onClick={handlePageUp}>{">"}</button> : <button onClick={handlePageUp}>{">"}</button>}
                     </div>
             </div>
+            <button className="fixed bottom-4 right-4 border-solid border-2 border-slate-600 bg-indigo-600 hover:bg-indigo-300 text-slate-100 font-bold px-8 py-4 rounded-full shadow-lg" onClick={navigateToPage}>+</button>
         </div>
     )
 }
