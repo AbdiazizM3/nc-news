@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import DeleteButton from "./DeleteButton"
+import DeleteCommentBtn from "./DeleteCommentBtn"
 import { CurrentUserContext } from "../CurrentUser"
 
 export default function CommentCard({comment, setDeleteStatus}) {
@@ -20,7 +20,7 @@ export default function CommentCard({comment, setDeleteStatus}) {
                     <p>votes: {comment.votes}</p>
                     <p>{readableDate}</p>
                 </div>
-                <DeleteButton id={comment.comment_id} author={comment.author} username={currentUser} setDeleteStatus={setDeleteStatus}/>
+                <DeleteCommentBtn id={comment.comment_id} author={comment.author} username={currentUser} setDeleteStatus={setDeleteStatus}/>
             </div>
     )
 }

@@ -113,3 +113,29 @@ export async function getUserByUsername(username) {
     throw new Error("Unable to fetch user");
   }
 }
+
+export async function postArticle(username, title, description, topic, image) {
+  try {
+    const response = await axios.post(`${baseUrl}/articles`, {
+      username: username,
+      title: title,
+      body: description,
+      topic: topic,
+      article_img_url: image,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error posting article:", error);
+    throw new Error("Unable to post article");
+  }
+}
+
+export async function deleteArticleById(id) {
+  try {
+    const response = await axios.delete(`${baseUrl}/articles/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting article:", error);
+    throw new Error("Unable to delete article");
+  }
+}

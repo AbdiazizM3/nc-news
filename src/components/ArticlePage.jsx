@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getArticleById} from "../api";
+import { useNavigate, useParams } from "react-router-dom";
+import { deleteArticleById, getArticleById} from "../api";
 import Loading from "./Loading";
 import CommentList from "./CommentList"
 import VoteHandler from "./VoteHandler";
@@ -8,12 +8,14 @@ import PostComment from "./PostComment";
 import Error from "./Error"
 
 export default function ArticlePage () {
+    const navigate = useNavigate()
     const {article_id} = useParams()
     const [article, setArticle] = useState({})
     const [isLoading, setIsLoading] = useState(false)
     const [deleteStatus, setDeleteStatus] = useState(false)
     const [commentStatus, setCommentStatus] = useState(false)
     const [error, setError] = useState(null)
+    const username = localStorage.getItem("userDetails")
 
     useEffect(() => {
         setIsLoading(true)
@@ -32,6 +34,12 @@ export default function ArticlePage () {
 
         fetchData();
     }, [commentStatus, deleteStatus])
+
+    function handleDeleteArticle(){
+        deleteArticleById(article.article_id).then(() => {
+            navigate(-1)
+        })
+    }
 
     if(isLoading){
         return <Loading />
@@ -52,6 +60,7 @@ export default function ArticlePage () {
 
     return(
         <article className="flex flex-col justify-center items-center space-y-4 w-full max-w-3xl px-4 py-6">
+            {username === article.author && <button className="fixed right-2 top-24 border-solid border-2 border-rose-600 bg-rose-600 hover:bg-rose-300 text-slate-100 px-2 py-1 rounded-lg" onClick={handleDeleteArticle}>Delete</button>}
             <div className="flex flex-col justify-center items-center">
                 <h2 className="mb-2 font-bold">{article.author}</h2>
                 <h2 className="mb-2">{article.title}</h2>

@@ -12,7 +12,7 @@ export default function PostComment({id, setCommentStatus}) {
         setCommentInput(event.target.value)
     }
 
-    function handleCommentPost(event) {
+    function handleCommentPost() {
         postCommentById(id, currentUser, commentInput).then(() => {
             setCommentStatus((currStatus) => {
                 return !currStatus

@@ -14,7 +14,7 @@ export default function SortDrop({sort, order, setSort, setOrder}) {
                 <option value="votes">Popular</option>
                 <option value="comment_count">Most Talked about</option>
             </select>
-            <select name="order" id="order" className="article__filter --order" value={order} onChange={handleOrder}>
+            <select name="order" id="order" value={order} onChange={handleOrder}>
                 <option value="DESC">DESC</option>
                 <option value="ASC">ASC</option>
             </select>
