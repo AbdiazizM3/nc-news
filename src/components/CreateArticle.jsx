@@ -9,9 +9,10 @@ export default function CreateArticle() {
     const [articleBody, setArticleBody] = useState("")
     const [topicList, setTopicList] = useState([])
     const [topic, setTopic] = useState("")
-    const [articleImage, setArticleImage] = useState("")
+    const [articleImage, setArticleImage] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
+    const [preview, setPreview] = useState(null)
     const username = localStorage.getItem("userDetails")
 
     useEffect(() => {
@@ -32,7 +33,7 @@ export default function CreateArticle() {
         fetchData();
     }, [])
 
-    function handlePost() {
+    function handleSubmit() {
         postArticle(username, articleTitle, articleBody, topic, articleImage).then(() => {
             navigate(-1)
         })
@@ -54,7 +55,15 @@ export default function CreateArticle() {
     }
 
     function handleArticleImage(event) {
-        setArticleImage(event.target.value)
+        const file = event.target.files[0]
+        setArticleImage(file)
+
+        const fileReader = new FileReader()
+
+        fileReader.onloadend = () => {
+            setPreview(fileReader.result)
+        }
+        fileReader.readAsDataURL(file)
     }
 
     if(isLoading){
@@ -63,10 +72,10 @@ export default function CreateArticle() {
 
     return(
         <div className="flex items-center justify-center min-h-screen">
-            <div className="flex flex-col items-center space-y-4 w-full max-w-3xl py-6 shadow-lg rounded-lg">
+            <form className="flex flex-col items-center space-y-4 w-full max-w-3xl py-6 shadow-lg rounded-lg" onSubmit={handleSubmit}>
                 <div className="flex space-x-2 mr-2">
                     <label htmlFor="article_title">Article Title:</label>
-                    <input className="border-solid border-2 border-slate-600 rounded-lg focus:ring-2 focus:ring-indigo-600" type="article_title" id="article_title" value={articleTitle} onChange={handleArticleTitle}/>
+                    <input className="border-solid border-2 border-slate-600 rounded-lg focus:ring-2 focus:ring-indigo-600" value={articleTitle} onChange={handleArticleTitle}/>
                 </div>
                 <div className="flex space-x-2">
                     <p>Description:</p>
@@ -79,7 +88,7 @@ export default function CreateArticle() {
                 </div>
                 <div className="flex space-x-2 mr-16">
                     <p>Topic:</p>
-                    <select name="topic" id="topic" value={topic} className="border-2 border-solid border-slate-600 rounded-lg focus:ring-2 focus:ring-indigo-600" onChange={handleTopicSelect}>
+                    <select name="topic" value={topic} className="border-2 border-solid border-slate-600 rounded-lg focus:ring-2 focus:ring-indigo-600" onChange={handleTopicSelect}>
                         <option value="">---</option>
                         {topicList.map((item, index) => {
                             return(
@@ -90,11 +99,12 @@ export default function CreateArticle() {
                 </div>
                 <div className="flex space-x-2 ml-8">
                     <label htmlFor="article_title">Image:</label>
-                    <input className="border-solid border-2 border-slate-600 rounded-lg focus:ring-2 focus:ring-indigo-600" type="article_image" id="article_image" value={articleImage} onChange={handleArticleImage}/>
+                    <input className="border-solid border-2 border-slate-600 rounded-lg focus:ring-2 focus:ring-indigo-600" type="file" accept="image/*" onChange={handleArticleImage}/>
                 </div>
+                {preview && <img src={preview} alt="Image preview" style={{ maxWidth: '200px', marginTop: '20px' }} />}
                 {error && <p>{error}</p>}
-                <button className="border-solid border-2 border-slate-600 bg-indigo-600 hover:bg-indigo-300 text-slate-100 px-4 rounded-lg" onClick={handlePost}>Post</button>
-            </div>
+                <button type="submit" className="border-solid border-2 border-slate-600 bg-indigo-600 hover:bg-indigo-300 text-slate-100 px-4 rounded-lg">Post</button>
+            </form>
         </div>
     )
 }
