@@ -121,7 +121,7 @@ export async function postArticle(username, title, description, topic, image) {
       title: title,
       body: description,
       topic: topic,
-      article_img_url: image,
+      image: image,
     });
     return response.data;
   } catch (error) {
