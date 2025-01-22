@@ -139,3 +139,27 @@ export async function deleteArticleById(id) {
     throw new Error("Unable to delete article");
   }
 }
+
+export async function likeCommentVotesById(id) {
+  try {
+    const response = await axios.patch(`${baseUrl}/comments/${id}`, {
+      inc_votes: 1,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error liking comment:", error);
+    throw new Error("Unable to like comment");
+  }
+}
+
+export async function dislikeCommentVotesById(id) {
+  try {
+    const response = await axios.patch(`${baseUrl}/comments/${id}`, {
+      inc_votes: -1,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error disliking comment:", error);
+    throw new Error("Unable to dislike comment");
+  }
+}

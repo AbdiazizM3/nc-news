@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import DeleteCommentBtn from "./DeleteCommentBtn"
 import { CurrentUserContext } from "../CurrentUser"
+import CommentVoteHandler from "./CommentVoteHandler"
 
 export default function CommentCard({comment, setDeleteStatus}) {
     const {currentUser} = useContext(CurrentUserContext)
@@ -13,12 +14,11 @@ export default function CommentCard({comment, setDeleteStatus}) {
         year: 'numeric',
     })
 
-    return(<div className="justify-center">
+    return(<div className="justify-center space-y-2 space-x-2">
                 <h2 className="font-bold">{comment.author}</h2>
                 <p>{comment.body}</p>
-                <div className="flex flex-row space-x-12">
-                    <p>votes: {comment.votes}</p>
-                    <p>{readableDate}</p>
+                <div className="flex">
+                    <CommentVoteHandler comment_id={comment.comment_id} votes={comment.votes} date={readableDate}/>
                 </div>
                 <DeleteCommentBtn id={comment.comment_id} author={comment.author} username={currentUser} setDeleteStatus={setDeleteStatus}/>
             </div>
