@@ -59,7 +59,7 @@ export default function ArticlePage () {
     })
 
     return(
-        <article className="flex flex-col justify-center items-center space-y-4 w-full max-w-3xl px-4 py-6">
+        <article className="flex flex-col justify-center items-center space-y-4 w-full max-w-6xl px-4 py-6">
             {username === article.author && <button className="fixed right-2 top-24 border-solid border-2 border-rose-600 bg-rose-600 hover:bg-rose-300 text-slate-100 px-2 py-1 rounded-lg" onClick={handleDeleteArticle}>Delete</button>}
             <div className="flex flex-col justify-center items-center">
                 <h2 className="mb-2 font-bold">{article.author}</h2>
