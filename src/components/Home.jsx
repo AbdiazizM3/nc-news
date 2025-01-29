@@ -52,7 +52,6 @@ export default function Home () {
     }
 
     function navigateToPage() {
-        console.log("moving to /upload")
         navigate("/upload")
     }
 
