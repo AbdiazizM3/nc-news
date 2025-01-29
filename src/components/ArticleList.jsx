@@ -10,7 +10,7 @@ export default function ArticleList ({articles}) {
                     return ""
                 }
                 return(
-                    <li key={article.article_id} className="border-4 border-solid border-indigo-600 py-9 mb-6 rounded">
+                    <li key={article.article_id} className="w-full border-4 border-solid border-indigo-600 py-9 mb-6 rounded">
                         <ArticleCard article={article}/>
                     </li>
                 )

@@ -61,17 +61,19 @@ export default function Articles () {
         </div>
     }
 
-    if(articles.length < 1){
+    if(articles.length === 1){
         return (
-            <div>
-                <SortDrop sort={sort} order={order} setSort={setSort} setOrder={setOrder} />
-                <p>No Articles</p>
+            <div className="flex items-center justify-center min-h-screen">
+            <div className="flex flex-col items-center space-y-4 w-full max-w-3xl px-4 py-6 shadow-lg rounded-lg">
+                <h2>There are no more articles. Add some!</h2>
                 <div className="flex space-x-2">
-                    {page === 1 ? <button disabled={true} onClick={handlePageDown}>{"<"}</button> : <button onClick={handlePageDown}>{"<"}</button>}
-                    <p>{page}</p>
-                    {articles.length < 10 ? <button disabled={true} onClick={handlePageUp}>{">"}</button> : <button onClick={handlePageUp}>{">"}</button>}
+                        {page === 1 ? <button disabled={true} onClick={handlePageDown}>{"<"}</button> : <button onClick={handlePageDown}>{"<"}</button>}
+                        <p>{page}</p>
+                        {articles.length === 11 ? <button onClick={handlePageUp}>{">"}</button> : <button disabled={true} onClick={handlePageUp}>{">"}</button>}
                 </div>
             </div>
+            <button className="fixed bottom-4 right-4 border-solid border-2 border-slate-600 bg-indigo-600 hover:bg-indigo-300 text-slate-100 font-bold px-8 py-4 rounded-full shadow-lg" onClick={navigateToPage}>+</button>
+        </div>
         )
     }
 
@@ -83,7 +85,7 @@ export default function Articles () {
                     <div className="flex space-x-2">
                         {page === 1 ? <button disabled={true} onClick={handlePageDown}>{"<"}</button> : <button onClick={handlePageDown}>{"<"}</button>}
                         <p>{page}</p>
-                        {articles.length < 10 ? <button disabled={true} onClick={handlePageUp}>{">"}</button> : <button onClick={handlePageUp}>{">"}</button>}
+                        {articles.length === 11 ? <button onClick={handlePageUp}>{">"}</button> : <button disabled={true} onClick={handlePageUp}>{">"}</button>}
                     </div>
             </div>
             <button className="fixed bottom-4 right-4 border-solid border-2 border-slate-600 bg-indigo-600 hover:bg-indigo-300 text-slate-100 font-bold px-8 py-4 rounded-full shadow-lg" onClick={navigateToPage}>+</button>
